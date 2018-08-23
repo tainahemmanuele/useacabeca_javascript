@@ -2,21 +2,31 @@
 
 <head>
     <title>iRock - A rocha virtual de estimação </title>
+    <script type="text/javascript" src="cookie.js"></script>
     <script type="text/javascript">
         function greetUser() {
-            "alert('Olá, eu sou a rocha de estimação.');"
+            userName = readCookie("irock_username");
+            if (userName)
+                alert("Olá"+ userName + ", senti sua falta ");
+            else
+                alert('Olá, eu sou a rocha de estimação.');
         }
-        function resizeRock(){
-            document.getElementById("rockImg").style.height = (document.body.clientHeight -100) * 0.9;
+        function resizeRock() {
+            document.getElementById("rockImg").style.height = (document.body.clientHeight - 100) * 0.9;
         }
         function touchRock() {
-            var userName = prompt("Qual é o seu nome?", "Entre com o seu nome aqui.");
-
             if (userName) {
-                alert("Prazer em conhecer você," + userName + ".");
-                document.getElementById("rockImg").src = "rock_happy.png";
-                setTimeout("document.getElementById('rockImg').src = 'rock.png';", 1 * 60 * 1000);
+                alert("Eu gosto de atenção, " + userName + ".Obrigada.");
             }
+            else{
+                userName = prompt("Qual é o seu nome?", "Digite o seu nome aqui");
+                if (userName){
+                    alert("Que bom conhecer você, " + userName + ".");
+                    writeCookie("irock_username", userName ,  5* 365);
+                }
+            }
+            document.getElementById("rockImg").src = "rock_happy.png";
+            setTimeout("document.getElementById('rockImg').src = 'rock.png';", 1 * 60 * 1000);
         }
 
     </script>
